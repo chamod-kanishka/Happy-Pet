@@ -14,17 +14,17 @@ const App = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             const randomStatus = Math.random();
-            if (randomStatus < 0.2 && !isHungry && !isSleepy) {
+            if (randomStatus < 0.2 && !isHungry && !isSleepy && currentAction !== 'eat') {
                 setIsHungry(true);
                 setCurrentAction('hungry');
-            } else if (randomStatus >= 0.2 && randomStatus < 0.4 && !isHungry && !isSleepy) {
+            } else if (randomStatus >= 0.2 && randomStatus < 0.4 && !isHungry && !isSleepy && currentAction !== 'sleep') {
                 setIsSleepy(true);
                 setCurrentAction('sleepy');
             }
         }, 3000); // Check status every 3 seconds
 
         return () => clearInterval(interval);
-    }, [isHungry, isSleepy]);
+    }, [isHungry, isSleepy, currentAction]);
 
     useEffect(() => {
         let interval;
@@ -55,11 +55,11 @@ const App = () => {
         setCurrentAction('eat');
         setEnergyLevel(energyLevel => Math.min(energyLevel + 20, 100));
         setIsHungry(false); // Reset isHungry immediately when Eat is clicked
+        setScore(score => score + 10);
 
         setTimeout(() => {
             setCurrentAction('happy');
             setTimeout(() => setCurrentAction('play'), 1000);
-            setScore(score => score + 10);
         }, 3000);
     };
 
