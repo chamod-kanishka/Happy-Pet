@@ -10,13 +10,11 @@ const App = () => {
     const [energyLevel, setEnergyLevel] = useState(100);
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(false);
-    const [randomStatus, setRandomStatus] = useState(0); // State to hold random status value
 
     // Handle pet's status based on energy level and random chance
     useEffect(() => {
         const interval = setInterval(() => {
             const newRandomStatus = Math.random();
-            setRandomStatus(newRandomStatus); // Update random status value
             if (newRandomStatus < 0.4 && !isHungry && !isSleepy && currentAction !== 'eat') {
                 setIsHungry(true);
                 setCurrentAction('hungry');
