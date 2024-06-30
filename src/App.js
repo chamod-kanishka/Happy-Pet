@@ -10,20 +10,21 @@ const App = () => {
     const [energyLevel, setEnergyLevel] = useState(100);
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(false);
+    const [randomStatus, setRandomStatus] = useState(0); // State to hold random status value
 
     // Handle pet's status based on energy level and random chance
     useEffect(() => {
         const interval = setInterval(() => {
-            const randomStatus = Math.random();
-            console.log(randomStatus)
-            if (randomStatus < 0.4 && !isHungry && !isSleepy && currentAction !== 'eat') {
+            const newRandomStatus = Math.random();
+            setRandomStatus(newRandomStatus); // Update random status value
+            if (newRandomStatus < 0.4 && !isHungry && !isSleepy && currentAction !== 'eat') {
                 setIsHungry(true);
                 setCurrentAction('hungry');
-            } else if (randomStatus >= 0.6 && !isHungry && !isSleepy && currentAction !== 'sleep') {
+            } else if (newRandomStatus >= 0.6 && !isHungry && !isSleepy && currentAction !== 'sleep') {
                 setIsSleepy(true);
                 setCurrentAction('sleepy');
             }
-        }, 3000); // Check status every 5 seconds
+        }, 3000); // Check status every 3 seconds
 
         return () => clearInterval(interval);
     }, [isHungry, isSleepy, currentAction]);
@@ -126,7 +127,10 @@ const App = () => {
                     <button className="restart-button" onClick={restartGame}>Restart Game</button>
                 </div>
             ) : (
-                <PetStatus currentAction={currentAction} energyLevel={energyLevel} score={score} />
+                <div>
+                    <PetStatus currentAction={currentAction} energyLevel={energyLevel} score={score} />
+                    <p>Random Status: {randomStatus.toFixed(2)}</p>
+                </div>
             )}
 
             {/* Interaction buttons */}
