@@ -33,7 +33,7 @@ const App = () => {
         if (!['eat', 'sleep'].includes(currentAction)) {
             interval = setInterval(() => {
                 setEnergyLevel(prev => Math.max(prev - (100 / 30), 0));
-            }, 2000);
+            }, 1000);
         }
 
         return () => clearInterval(interval);
