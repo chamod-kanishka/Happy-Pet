@@ -24,7 +24,7 @@ const App = () => {
                 setIsSleepy(true);
                 setCurrentAction('sleepy');
             }
-        }, 1000); // Check status every 3 seconds
+        }, 3000); // Check status every 3 seconds
 
         return () => clearInterval(interval);
     }, [isHungry, isSleepy, currentAction]);
@@ -34,7 +34,7 @@ const App = () => {
         let interval;
         if (!['eat', 'sleep'].includes(currentAction)) {
             interval = setInterval(() => {
-                setEnergyLevel(prev => Math.max(prev - (100 / 60), 0));
+                setEnergyLevel(prev => Math.max(prev - (100 / 30), 0));
             }, 2000);
         }
 
@@ -129,7 +129,6 @@ const App = () => {
             ) : (
                 <div>
                     <PetStatus currentAction={currentAction} energyLevel={energyLevel} score={score} />
-                    {/* <p>Random Status: {randomStatus.toFixed(2)}</p> */}
                 </div>
             )}
 
