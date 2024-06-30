@@ -98,30 +98,46 @@ const App = () => {
 
     return (
         <div className="app">
-            <h1>Happy Pet - Virtual Pet Simulator</h1>
-            {gameOver ? (
-                <div className="game-over">
-                    <p>Game Over!</p>
-                    <p>Final Score: {score}</p>
-                    <button className="restart-button" onClick={restartGame}>Restart Game</button>
-                </div>
-            ) : (
-                <PetStatus currentAction={currentAction} energyLevel={energyLevel} score={score} />
-            )}
-            {!gameOver && (
-                <InteractionButtons
-                    currentAction={currentAction}
-                    onEat={handleEat}
-                    onPlay={handlePlay}
-                    onSleep={handleSleep}
-                    onSing={handleSing}
-                    onDance={handleDance}
-                    onJump={handleJump}
-                    isHungry={isHungry}
-                    isSleepy={isSleepy}
-                />
-            )}
+        <div className="title">
+            <img
+                src={process.env.PUBLIC_URL + '/pet-icon.png'}
+                alt="Pet Icon"
+                style={{ width: '40px', height: '40px', marginRight: '10px' }}
+            />
+            <h1>Happy Pet</h1>
         </div>
+
+        {/* Your existing content */}
+        {gameOver ? (
+            <div className="game-over">
+                <p>Game Over!</p>
+                <p>Final Score: {score}</p>
+                <button className="restart-button" onClick={restartGame}>Restart Game</button>
+            </div>
+        ) : (
+            <PetStatus currentAction={currentAction} energyLevel={energyLevel} score={score} />
+        )}
+        {!gameOver && (
+            <InteractionButtons
+                currentAction={currentAction}
+                onEat={handleEat}
+                onPlay={handlePlay}
+                onSleep={handleSleep}
+                onSing={handleSing}
+                onDance={handleDance}
+                onJump={handleJump}
+                isHungry={isHungry}
+                isSleepy={isSleepy}
+            />
+        )}
+
+        {/* Footer section */}
+        <footer className="footer">
+            <p>&copy; 2024 Developed by Chamod Kanishka</p>
+        </footer>
+
+    </div>
+
     );
 };
 
