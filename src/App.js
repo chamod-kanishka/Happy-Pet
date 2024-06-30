@@ -14,10 +14,10 @@ const App = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             const randomStatus = Math.random();
-            if (randomStatus < 0.2 && !isHungry && !isSleepy && currentAction !== 'eat') {
+            if (randomStatus < 0.6 && !isHungry && !isSleepy && currentAction !== 'eat') {
                 setIsHungry(true);
                 setCurrentAction('hungry');
-            } else if (randomStatus >= 0.2 && randomStatus < 0.4 && !isHungry && !isSleepy && currentAction !== 'sleep') {
+            } else if (randomStatus >= 0.6 && randomStatus < 0.8 && !isHungry && !isSleepy && currentAction !== 'sleep') {
                 setIsSleepy(true);
                 setCurrentAction('sleepy');
             }
